@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.prerender/
+.validation/
+.env.local
+*.tsbuildinfo
+*-deploy.zip
+.editorial-check/
