@@ -1,6 +1,6 @@
 export const CURRENT_PATCH = '3.2';
 export const VERIFIED_AT = '2026-10-04';
-export type Kind = 'agent'|'engine'|'disc'|'bangboo'|'team'|'faction'|'enemy'|'mode'|'stage'|'patch'|'event'|'build'|'guide';
+export type Kind = 'location'|'agent'|'engine'|'disc'|'bangboo'|'team'|'faction'|'enemy'|'mode'|'stage'|'patch'|'event'|'build'|'guide';
 export type Status = 'verified'|'editorial'|'editorial-draft';
 export interface RecordNode {
   id: string; kind: Kind; name: string; summary: string; patch: string;

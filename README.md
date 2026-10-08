@@ -43,13 +43,13 @@ No provider, trackers, analytics or remote fonts are connected. AdSlot is disabl
 
 Before commercial release: choose network and regions, disclose operator contact and exact provider purposes, implement the provider-approved consent manager with reject/withdraw controls, integrate scripts only after valid consent where required, add publisher-issued ads.txt, measure layout shifts and ad density on mobile, and enforce accessibility and performance budgets. Never invent publisher IDs. Add placements between sections/sidebar only after usability checks.
 
-Graphics and CSS are original; no game artwork, soundtrack or videos are bundled. Facts and names do not constitute a blanket commercial license. Review current HoYoverse rules and asset permissions for every future image; maintain an asset rights register. Advertising revenue is not assumed to be permitted for every official asset.
+Interface graphics and CSS are original. Game imagery is locally hosted with source attribution and is excluded from software licensing. See IMAGE_SOURCES.md for provenance and commercial-use limitations. No soundtrack or videos are bundled.
 
 ## Next content milestones
 
 Complete remaining Agents and support/Stun builds; add exact effect values with revision history; add stage modifier snapshots by server and period; controlled rotation tests with investment stated; optimize disjoint team assignment; localized Russian terminology; editorial CMS/import validation; tested historical balance snapshots. Preserve unknown fields rather than fabricate data.
 
-Before public hosting: configure real domain, generate prerendered pages, canonical URLs and sitemap, return real 404 responses, test direct routes on selected host, add operator/legal details and ad consent integration. The build now prerenders 203 public routes. Public origin: https://zzz-archive-b6u.pages.dev. Search-engine indexing is not guaranteed by deployment.
+Before public hosting: configure real domain, generate prerendered pages, canonical URLs and sitemap, return real 404 responses, test direct routes on selected host, add operator/legal details and ad consent integration. The build now prerenders 210 public routes. Public origin: https://zzz-archive-b6u.pages.dev. Search-engine indexing is not guaranteed by deployment.
 
 ## Validation
 
@@ -57,11 +57,11 @@ check:data checks unique IDs, relation targets, six-piece plans, engine compatib
 
 ## Agent build articles and hosting
 
-Five Agents have individual articles at /guides/:agentId: Miyabi, Zhu Yuan, Lycaon, Nicole and Caesar. The other 28 URLs are reference profiles, not generated guides. /guides supports name, specialty and coverage filters. There are 49 build contexts and 222 graph records. Reviewed equipment baselines feed both the article and existing context pages. See docs/EDITORIAL.md for publication and patch review.
+Five Agents have individual articles at /guides/:agentId: Miyabi, Zhu Yuan, Lycaon, Nicole and Caesar. The other 28 URLs are reference profiles, not generated guides. /guides supports name, specialty and coverage filters. There are 49 build contexts and 228 graph records. Reviewed equipment baselines feed both the article and existing context pages. See docs/EDITORIAL.md for publication and patch review.
 
-Brand.tsx contains original SVG entity icons and the new archive monogram; public/favicon.svg is the tab icon. No decorative Unicode card glyphs or remote artwork is needed.
+Brand.tsx contains original SVG entity icons and the new archive monogram; public/favicon.svg is the tab icon. Game media uses local WebP images and thumbnails with native-dialog enlargement and source links.
 
-The production build prerenders 203 public routes, 42 noindex routes (5 utilities, 28 reference profiles, 9 consolidated build contexts), and 404. Set VITE_SITE_URL to the final HTTPS origin before building. scripts/prerender.mjs creates canonical links, sitemap.xml, robots.txt and basic response headers. Cloudflare Pages Direct Upload receives only dist contents, never source files, local storage or environment files. Cloudflare serves the generated 404.html for unknown paths.
+The production build prerenders 210 public routes, 42 noindex routes (5 utilities, 28 reference profiles, 9 consolidated build contexts), and 404. Set VITE_SITE_URL to the final HTTPS origin before building. scripts/prerender.mjs creates canonical links, sitemap.xml, robots.txt and basic response headers. Cloudflare Pages Direct Upload receives only dist contents, never source files, local storage or environment files. Cloudflare serves the generated 404.html for unknown paths.
 
 Deployment workflow:
 
@@ -79,3 +79,11 @@ The homepage signal map uses stationary navigation cards and subtle animated con
 ## Individual editorial guides
 
 The shared page template consumes separate files in src/content/guides. Facts and equipment dates are separate from rotation and mode tests; no in-game test is claimed. Use npm run check:editorial to inspect review status or -- --patch=3.3 --changed=nicole to find affected guides. See [editorial workflow](docs/EDITORIAL.md).
+
+## Images and locations
+
+99 attributed game images cover all 33 Agents, 19 W-Engines, 22 Drive Disc sets, 10 Bangboo, 6 enemies, 6 locations, 1 mode emblem and 2 additional gameplay screenshots. Browse `/explore/location`; locations participate in the same graph and search. Team and build pages reuse their actual Agents’ images. Each source is recorded in [IMAGE_SOURCES.md](IMAGE_SOURCES.md) and the linked JSON manifest.
+
+`npm run check:media` verifies coverage, WebP dimensions, checksums and size budgets. `npm run media:sync` is a maintainer-only network import, never a build dependency. CI runs data/media checks and prerender validation on every push and pull request.
+
+Development servers bind to localhost. Stop them after testing to release the port; do not leave a preview running after completing a task.

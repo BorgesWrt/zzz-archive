@@ -1,3 +1,4 @@
+import {locations} from './content/locations';
 import { buildArticles } from './articles';
 import {authoredByAgent} from './content/guides';
 import {editorialEngines,editorialDiscs} from './content/equipment';
@@ -24,10 +25,10 @@ export const builds=[...modeBuilds,...extraBuilds].map(build=>{
 import { agents, factions, engines as baseEngines, discs as baseDiscs, bangboos, contextRecords } from './catalog';
 import { teams, builds as modeBuilds, guides } from './service-data';
 import type { Kind, RecordNode } from './domain';
-export const records:RecordNode[]=[...agents,...factions,...engines,...discs,...bangboos,...contextRecords,...teams,...guides,...buildArticles];
+export const records:RecordNode[]=[...locations,...agents,...factions,...engines,...discs,...bangboos,...contextRecords,...teams,...guides,...buildArticles];
 export const allRecords:RecordNode[]=[...records,...builds];
 export const byId=new Map(allRecords.map(r=>[r.id,r]));
-export const kinds:{id:Kind;label:string;description:string}[]=Object.entries({agent:'Agents',engine:'W-Engines',disc:'Drive Discs',bangboo:'Bangboo',team:'Teams',faction:'Factions',enemy:'Enemies',mode:'Modes',stage:'Stages',patch:'Patches',event:'Events',build:'Build variants',guide:'Guides'}).map(([id,label])=>({id:id as Kind,label,description:`Browse linked ${label.toLowerCase()}`}));
+export const kinds:{id:Kind;label:string;description:string}[]=Object.entries({agent:'Agents',location:'Locations',engine:'W-Engines',disc:'Drive Discs',bangboo:'Bangboo',team:'Teams',faction:'Factions',enemy:'Enemies',mode:'Modes',stage:'Stages',patch:'Patches',event:'Events',build:'Build variants',guide:'Guides'}).map(([id,label])=>({id:id as Kind,label,description:`Browse linked ${label.toLowerCase()}`}));
 export const kindLabel=(kind:Kind)=>kinds.find(k=>k.id===kind)?.label??kind;
 export const recordPath=(r:RecordNode)=>r.id.endsWith("-build-guide")?`/guides/${r.id.replace("-build-guide","")}`:`/records/${r.kind}/${r.id}`;
 export const edges=allRecords.flatMap(r=>[...new Set(r.related)].map(target=>({source:r.id,target,relation:r.kind==='build'?'build context':r.kind==='team'?'squad context':r.kind==='faction'?'member':'references'})));

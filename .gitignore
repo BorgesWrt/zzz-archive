@@ -6,3 +6,7 @@ dist/
 *.tsbuildinfo
 *-deploy.zip
 .editorial-check/
+.media-check/
+.env
+.env.*
+!.env.example

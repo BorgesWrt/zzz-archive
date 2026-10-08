@@ -1,6 +1,7 @@
 import type { Kind } from './domain';
 export function EntityIcon({kind}:{kind:Kind}){
  const paths:Record<Kind,React.ReactNode>={
+ location:<><path d="M12 22s8-8 8-13a8 8 0 0 0-16 0c0 5 8 13 8 13Z"/><circle cx="12" cy="9" r="3"/></>,
  agent:<><circle cx="12" cy="7" r="3"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></>,
  build:<><path d="M4 7h16M4 17h16M8 3v8M16 13v8"/><circle cx="8" cy="7" r="2"/><circle cx="16" cy="17" r="2"/></>,
  mode:<><path d="m5 4 15 8-15 8Z"/></>,engine:<><path d="m14 2-9 12h6l-1 8 9-12h-6Z"/></>,
