@@ -54,3 +54,6 @@ input:not([type=checkbox]),select{min-height:46px;background:#101719;color:var(-
 .media-dialog-caption{display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;padding-top:18px;font-size:13px}.media-dialog-caption a{color:#a9dadd}
 @media(max-width:600px){.media-gallery{gap:12px;margin:18px 0}.media-open img,.media-single .media-open img{height:280px}.record-squad .media-thumb{height:140px}.media-dialog{width:calc(100vw - 16px);max-height:calc(100dvh - 16px)}.media-dialog-content{padding:12px}.media-dialog-caption{flex-direction:column}.media-figure figcaption{padding:10px 12px}.media-thumb{height:200px}}
 @media(prefers-reduced-motion:reduce){.media-thumb img{transition:none}.record-card:hover .media-thumb img,.guide-card:hover .media-thumb img{transform:none}}
+
+/* Hide the injected Netlify promotional badge and its card. */
+#nl-badge, .nl-badge, #nl-card { display: none !important; }
