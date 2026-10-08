@@ -49,7 +49,7 @@ Interface graphics and CSS are original. Game imagery is locally hosted with sou
 
 Complete remaining Agents and support/Stun builds; add exact effect values with revision history; add stage modifier snapshots by server and period; controlled rotation tests with investment stated; optimize disjoint team assignment; localized Russian terminology; editorial CMS/import validation; tested historical balance snapshots. Preserve unknown fields rather than fabricate data.
 
-Before public hosting: configure real domain, generate prerendered pages, canonical URLs and sitemap, return real 404 responses, test direct routes on selected host, add operator/legal details and ad consent integration. The build now prerenders 210 public routes. Public origin: https://zzz-archive-b6u.pages.dev. Search-engine indexing is not guaranteed by deployment.
+Before public hosting: configure real domain, generate prerendered pages, canonical URLs and sitemap, return real 404 responses, test direct routes on selected host, add operator/legal details and ad consent integration. The build now prerenders 210 public routes. Search-engine indexing is not guaranteed by deployment.
 
 ## Validation
 
@@ -61,14 +61,14 @@ Five Agents have individual articles at /guides/:agentId: Miyabi, Zhu Yuan, Lyca
 
 Brand.tsx contains original SVG entity icons and the new archive monogram; public/favicon.svg is the tab icon. Game media uses local WebP images and thumbnails with native-dialog enlargement and source links.
 
-The production build prerenders 210 public routes, 42 noindex routes (5 utilities, 28 reference profiles, 9 consolidated build contexts), and 404. Set VITE_SITE_URL to the final HTTPS origin before building. scripts/prerender.mjs creates canonical links, sitemap.xml, robots.txt and basic response headers. Cloudflare Pages Direct Upload receives only dist contents, never source files, local storage or environment files. Cloudflare serves the generated 404.html for unknown paths.
+The production build prerenders 210 public routes, 42 noindex routes (5 utilities, 28 reference profiles, 9 consolidated build contexts), and 404. Set VITE_SITE_URL to the final HTTPS origin before building. scripts/prerender.mjs creates canonical links, sitemap.xml, robots.txt and basic response headers. Deploy only the generated `dist` directory, never source files, local storage or environment files. Netlify serves the generated 404.html for unknown paths.
 
 Deployment workflow:
 
     npm run check:data
     npm run build
 
-Upload the contents of dist as a ZIP through the existing Cloudflare account's Pages interface. Rebuild if the resulting hostname differs from VITE_SITE_URL. This approach matches Ashen Archive's Direct Upload setup and does not modify that project.
+Deploy the prebuilt `dist` directory to Netlify with `netlify deploy --prod --dir=dist`. Set `VITE_SITE_URL` to the assigned Netlify HTTPS origin before building so canonical links and the sitemap point at the new host. Netlify configuration lives in `netlify.toml`; no Git provider integration or secrets are needed for a manual upload.
 
 
 Production checks: HTML routes, favicon, sitemap and robots return 200; unknown paths return 404. Query-based routes render from the shared URL instead of hydrating unfiltered static markup, avoiding mismatches when opening saved filters or squad links.
