@@ -6,6 +6,7 @@ import {build} from 'esbuild';
 const media=JSON.parse(await fs.readFile('src/media-assets.json','utf8'));
 const sources=JSON.parse(await fs.readFile('scripts/media-sources.json','utf8'));
 assert.deepEqual(JSON.parse(await fs.readFile('public/media/sources.json','utf8')),sources,'Published attribution drift');
+await fs.mkdir('.media-check',{recursive:true});
 await build({entryPoints:['src/data.ts'],bundle:true,platform:'node',format:'esm',outfile:'.media-check/catalog.mjs'});
 const {allRecords}=await import('../.media-check/catalog.mjs');
 const ids=new Set(allRecords.map(r=>r.id));let bytes=0;
