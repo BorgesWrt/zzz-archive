@@ -61,14 +61,14 @@ Five Agents have individual articles at /guides/:agentId: Miyabi, Zhu Yuan, Lyca
 
 Brand.tsx contains original SVG entity icons and the new archive monogram; public/favicon.svg is the tab icon. Game media uses local WebP images and thumbnails with native-dialog enlargement and source links.
 
-The production build prerenders 210 public routes, 42 noindex routes (5 utilities, 28 reference profiles, 9 consolidated build contexts), and 404. Set VITE_SITE_URL to the final HTTPS origin before building. scripts/prerender.mjs creates canonical links, sitemap.xml, robots.txt and basic response headers. Deploy only the generated `dist` directory, never source files, local storage or environment files. Netlify serves the generated 404.html for unknown paths.
+The production build prerenders 210 public routes, 42 noindex routes (5 utilities, 28 reference profiles, 9 consolidated build contexts), and 404. Set VITE_SITE_URL to the final HTTPS origin before building. scripts/prerender.mjs creates canonical links, sitemap.xml, robots.txt and basic response headers. Deploy only the generated `dist` directory, never source files, local storage or environment files. Cloudflare Pages serves the generated 404.html for unknown paths.
 
 Deployment workflow:
 
     npm run check:data
     npm run build
 
-Deploy the prebuilt `dist` directory to Netlify with `netlify deploy --prod --dir=dist`. Set `VITE_SITE_URL` to the assigned Netlify HTTPS origin before building so canonical links and the sitemap point at the new host. Netlify configuration lives in `netlify.toml`; no Git provider integration or secrets are needed for a manual upload.
+Cloudflare Pages builds `main` with `npm run build` and publishes `dist` at `https://zenless-archive.pages.dev/`. Set `VITE_SITE_URL` to this HTTPS origin in the Cloudflare project settings so canonical links and the sitemap point at the published host. New commits on `main` trigger deployment through Git integration.
 
 
 Production checks: HTML routes, favicon, sitemap and robots return 200; unknown paths return 404. Query-based routes render from the shared URL instead of hydrating unfiltered static markup, avoiding mismatches when opening saved filters or squad links.
